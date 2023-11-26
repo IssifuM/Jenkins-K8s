@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout Code') {
+            steps {
+                // Checkout code from GitHub repository
+                git branch: 'main', url: 'https://github.com/IssifuM/Jenkins-K8s.git' 
+            }
+        }
+        stage('Build Image') {
+            steps {
+                script {
+                    // Build Docker image. this is the name you want to call the image you are build
+                    // from the dockerfile. it doesnt have to he dame as what's in your dockerhub
+                    dockerImage = docker.build("aa7e414fdc/web_server:web_site")
+                }
+            }
+        }
+        stage('Deploy to K8 '){
+            steps {
+                script{
+                    // the name of deployment file on github
+                  kubernetesDeploy(configs:"web_pod.yaml",kubeconfigId:"kubernetes")
+                }
+            }
+        }
+    }
+}
