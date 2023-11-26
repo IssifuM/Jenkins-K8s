@@ -13,7 +13,7 @@ pipeline {
                 script {
                     // Build Docker image. this is the name you want to call the image you are build
                     // from the dockerfile. it doesnt have to he dame as what's in your dockerhub
-                    dockerImage = docker.build("aa7e414fdc/web_server:web_site")
+                   sh 'docker build -t aa7e414fdc/web_server:latest .'
                 }
             }
         }
