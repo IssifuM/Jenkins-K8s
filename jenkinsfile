@@ -22,7 +22,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Deploy to K8 ') {
+                stage('Deploy to K8') {
                     steps {
                         script {
                             // the name of deployment file on github
