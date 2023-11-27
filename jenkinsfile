@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        docker 'latest'
+        docker ('latest')
     }
     environment {
         DOCKER_REGISTRY_CREDENTIALS = credentials('DOCKER_REGISTRY_PASSWORD')
