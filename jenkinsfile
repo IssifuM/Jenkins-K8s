@@ -14,7 +14,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    docker.withTool('docker') {
+                    docker.withTool('desktop-linux') {
                         docker.withRegistry('https://hub.docker.com', 'DOCKER_REGISTRY_PASSWORD') {
                             // Build Docker image. this is the name you want to call the image you are build
                             // from the dockerfile. it doesnt have to he dame as what's in your dockerhub
