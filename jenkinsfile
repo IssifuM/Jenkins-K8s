@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        docker 'latest'
+    }
     environment {
         DOCKER_REGISTRY_CREDENTIALS = credentials('DOCKER_REGISTRY_PASSWORD')
             }
@@ -14,13 +17,13 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    docker.withTool('desktop-linux') {
+                    //docker.withTool('desktop-linux') {
                         docker.withRegistry('https://hub.docker.com', 'DOCKER_REGISTRY_PASSWORD') {
                             // Build Docker image. this is the name you want to call the image you are build
                             // from the dockerfile. it doesnt have to he dame as what's in your dockerhub
                             sh 'docker build -t aa7e414fdc/web_server:latest .'
                         }
-                    }
+                    //}
                 }
             }
         }
